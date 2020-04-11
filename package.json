@@ -1,0 +1,25 @@
+{
+  "name": "english-for-kids",
+  "version": "1.0.0",
+  "description": "English for kids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanderkurtsevich/english-for-kids.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexanderkurtsevich/english-for-kids/issues"
+  },
+  "homepage": "https://github.com/alexanderkurtsevich/english-for-kids#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
