@@ -89,8 +89,8 @@ const cards = [
                 audioSrc: 'audio/sing.mp3'
             },
             {
-                word: 'skip',
-                translation: 'пропускать, прыгать',
+                word: 'jump',
+                translation: 'прыгать',
                 image: 'img/skip.jpg',
                 audioSrc: 'audio/skip.mp3'
             },

@@ -1,0 +1,116 @@
+.cards__container {
+    width: auto;
+    display: grid;
+    grid-template-columns: minmax(auto, 275px) minmax(auto, 275px) minmax(auto, 275px) minmax(auto, 275px);
+    gap: 30px;
+    padding: 0 50px;
+}
+
+.card {
+    border: 3px solid black;
+    width: auto;
+    height: auto;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: .3s;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 56px;
+}
+
+.card-rotate {
+    transform: rotateY(180deg);
+}
+
+.card-rotate-back {
+    transform: rotateY(0);
+}
+
+.card__image {
+    width: 100%;
+}
+
+
+.card__flip {
+    width: 30px;
+    backface-visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    cursor: pointer;
+}
+
+.card__word {
+    font-size: 28px;
+    margin: 10px auto;
+    backface-visibility: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.card__translation {
+    font-size: 28px;
+    margin: 10px auto;
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.header {
+    height: 75px;
+}
+
+
+/* TOGGLE */
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+    height: 47px;
+    background-color: green;
+    border: 3px solid black;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.toggle-active {
+    background-color: orange;
+}
+
+.toggle__button {
+    width: 34px;
+    height: 34px;
+    background-color: grey;
+    border-radius: 5px;
+    margin: auto 3px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: .3s;
+    box-sizing: border-box;
+}
+
+.toggle__text {
+    font-size: 20px;
+    margin: 0 5px;
+    position: absolute;
+    display: none;
+}
+
+.toggle__text-train {
+right: 3px;
+}
+
+.active {
+    display: block;
+}
+
+
