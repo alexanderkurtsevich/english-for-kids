@@ -6,37 +6,36 @@ export class Card {
         this.translation = translation;
         this.imageSrc = imageSrc;
         this.audioSrc = audioSrc;
+
         this.card = null;
+        this.cardText;
+        this.cardTranslation;
+        this.cardFlip;
     }
 
     createCard() {
         let card = document.createElement('div');
         card.classList.add('cards__card', 'card');
         card.setAttribute('data-word', this.word);
+        card.style.backgroundImage = `url("${this.imageSrc}")`
         
-        let cardImage = document.createElement('img');
-        cardImage.classList.add('card__image');
-        cardImage.setAttribute('src', this.imageSrc);
-        cardImage.setAttribute('data-word', this.word);
-        card.append(cardImage);
+        this.cardText = document.createElement('p');
+        this.cardText.classList.add('card__word');
+        this.cardText.innerHTML = this.word;
+        this.cardText.setAttribute('data-word', this.word);
+        card.append(this.cardText)
 
-        let cardText = document.createElement('p');
-        cardText.classList.add('card__word');
-        cardText.innerHTML = this.word;
-        cardText.setAttribute('data-word', this.word);
-        card.append(cardText)
+        this.cardTranslation = document.createElement('p');
+        this.cardTranslation.classList.add('card__translation');
+        this.cardTranslation.innerHTML = this.translation;
+        this.cardTranslation.setAttribute('data-word', this.word);
+        card.append(this.cardTranslation)
 
-        let cardTranslation = document.createElement('p');
-        cardTranslation.classList.add('card__translation');
-        cardTranslation.innerHTML = this.translation;
-        cardTranslation.setAttribute('data-word', this.word);
-        card.append(cardTranslation)
-
-        let cardFlip = document.createElement('img');
-        cardFlip.classList.add('card__flip');
-        cardFlip.setAttribute('src', './img/rotate.svg');
-        cardFlip.setAttribute('data-word', this.word);
-        card.append(cardFlip)
+        this.cardFlip = document.createElement('img');
+        this.cardFlip.classList.add('card__flip');
+        this.cardFlip.setAttribute('src', './img/rotate.svg');
+        this.cardFlip.setAttribute('data-word', this.word);
+        card.append(this.cardFlip)
 
         this.card = card;
 
