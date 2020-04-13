@@ -1,7 +1,7 @@
 import { cards } from './cards.js'
 import { Card } from './createCards.js'
 import { createTrainPlayToggle } from './trainPlayToggle.js';
-import { createStartButton } from './createStartButton.js';
+import { StartButton } from './StartButton.js';
 
 class English {
     constructor() {
@@ -12,8 +12,10 @@ class English {
         this.randomizedWordList = []
         this.audios = {};
 
+
         this.englishWords = [];
         this.flipImages = [];
+        this.translations = [];
 
         this.count = 0;
         this.errorCount = 0;
@@ -22,22 +24,24 @@ class English {
     init() {
         this.playAudioEvent = this.playAudioEvent.bind(this);
         this.startGameEvent = this.startGameEvent.bind(this);
-
+        this.rotateCardClickEvent = this.rotateCardClickEvent.bind(this)
+        this.rotateCardMouseOverEvent = this.rotateCardMouseOverEvent.bind(this)
 
         let header = document.createElement('header'); // создание хэдера
         header.classList.add('header');
         document.body.append(header);
 
         this.createStarsWrap()
-       
 
 
 
-        let startButton = createStartButton();
-        header.append(startButton);
 
-        let toggle = createTrainPlayToggle(); // Для тоггла
-        header.append(toggle);
+        this.startButtonInstance = new StartButton();
+        this.startButton = this.startButtonInstance.create();
+        header.append(this.startButton);
+
+        this.toggle = createTrainPlayToggle(); // Для тоггла
+        header.append(this.toggle);
 
         this.createCardContainer()
         this.createCards()
@@ -46,7 +50,7 @@ class English {
         console.log(this.wordsList);
         console.log(this.randomizedWordList)
 
-        toggle.addEventListener('click', (event) => {
+        this.toggle.addEventListener('click', (event) => {
             this.mode = (this.mode === 'train') ? 'play' : 'train';
             this.englishWords.forEach(eachWord => {
                 eachWord.classList.toggle('card-playmode');
@@ -54,25 +58,44 @@ class English {
             this.flipImages.forEach(eachImg => {
                 eachImg.classList.toggle('card-playmode')
             })
+            this.translations.forEach(eachTranslation => {
+                eachTranslation.classList.toggle('card-playmode')
+            })
+            this.startButton.classList.toggle('hidden')
 
             if (this.mode === 'play') {
                 this.cardsContainer.removeEventListener('click', this.playAudioEvent);
-                document.body.addEventListener('click',  this.startGameEvent);
+                document.body.addEventListener('click', this.startGameEvent);
             }
             else {
                 this.cardsContainer.addEventListener('click', this.playAudioEvent);
-                document.body.removeEventListener('click',  this.startGameEvent);
+                document.body.removeEventListener('click', this.startGameEvent);
 
                 let stars = document.querySelectorAll('.star');
                 stars.forEach(star => star.remove())
             }
         })
 
-        
-        this.cardsContainer.addEventListener('click', this.playAudioEvent)
 
-        
-        
+        this.cardsContainer.addEventListener('click', this.playAudioEvent)
+        this.cardsContainer.addEventListener('click', this.rotateCardClickEvent)
+        this.cardsContainer.addEventListener('mouseover', this.rotateCardMouseOverEvent)
+
+
+    }
+
+    rotateCardClickEvent(event) {
+        if (event.target.classList.contains('card__flip')) {
+            this.rotatedWord = event.target.getAttribute('data-word');
+            let elements = document.querySelectorAll(`[data-word = "${this.rotatedWord}"]`)
+            elements.forEach(elem => elem.classList.add('card-rotate'))
+        }
+    }
+    rotateCardMouseOverEvent(event) {
+        let elements = document.querySelectorAll(`[data-word = "${this.rotatedWord}"]`)
+        if (event.target.getAttribute('data-word') !== this.rotatedWord) {
+            elements.forEach(elem => elem.classList.remove('card-rotate'))
+        }
     }
 
     createStarsWrap() {
@@ -103,7 +126,8 @@ class English {
             this.randomizedWordList.push(cardElem['word'])
 
             this.englishWords.push(card.cardText);
-            this.flipImages.push(card.cardFlip)
+            this.translations.push(card.cardTranslation)
+            this.flipImages.push(card.cardFlip);
             this.audios[cardElem['word']] = card.audioSrc
         })
     }
@@ -118,14 +142,23 @@ class English {
 
     startGameEvent(event) {
 
-        if (event.target.classList.contains('start-button')) {
+        if (event.target.classList.contains('start-button') && !this.game) {
             this.game = true;
-            event.target.style.display = "none";
+            this.startButtonInstance.toRepeatButton()
             this.playSound(this.audios[this.randomizedWordList[this.count]])
+        }
+
+        if (event.target.getAttribute('data-button') === 'start' && this.game) {
+            this.playSound(this.audios[this.randomizedWordList[this.count]])
+            console.log('hey')
         }
 
         if (this.game && event.target.classList.contains('card')) {
             if (event.target.getAttribute('data-word') === this.randomizedWordList[this.count]) {
+                let blockWindow = document.createElement('div');
+                blockWindow.classList.add('block-window');
+                event.target.append(blockWindow);
+
                 this.count += 1;
                 this.playSound('audio/correct.mp3');
 
@@ -165,11 +198,16 @@ class English {
         winWindow.classList.add('win-window');
         document.body.append(winWindow);
         if (this.errorCount === 0) {
+            let winText = document.createElement('p');
+            winText.classList.add('win-window__text');
+            winText.innerHTML = "WIN!"
+            winWindow.append(winText)
+
             let winImage = document.createElement('img');
             winImage.classList.add('win-window__image');
             winImage.setAttribute('src', 'img/success.jpg');
             winWindow.append(winImage);
-    
+
             this.playSound('audio/success.mp3')
             setTimeout(() => {
                 window.location.href = "./index.html"
@@ -177,17 +215,22 @@ class English {
         }
 
         else {
+            let looseText = document.createElement('p');
+            looseText.classList.add('win-window__loose-text');
+            looseText.innerHTML = `${this.errorCount} errors`
+            winWindow.append(looseText)
+
             let looseImage = document.createElement('img');
             looseImage.classList.add('win-window__image');
             looseImage.setAttribute('src', 'img/failure.jpg');
             winWindow.append(looseImage);
 
-            this.playSound('audio/failure.mp3') 
+            this.playSound('audio/failure.mp3')
             setTimeout(() => {
                 window.location.href = "./index.html"
             }, 3500);
         }
-        
+
     }
 }
 
