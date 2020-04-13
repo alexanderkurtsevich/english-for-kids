@@ -1,5 +1,5 @@
 const cards = [
-    ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions'],
+    ['Action (set A)', 'Action (set B)', 'Animal (set A)', 'Animal (set B)', 'Clothes', 'Emotions', 'Professions', 'Fruits'],
     [
         [
             {
@@ -300,6 +300,106 @@ const cards = [
                 image: 'img/laugh.jpg',
                 audioSrc: 'audio/laugh.mp3'
             }
+        ],
+        [
+            {
+                word: 'bodyguard',
+                translation: 'телохранитель',
+                image: 'img/bodyguard.jpg',
+                audioSrc: 'audio/bodyguard.mp3'
+            }, 
+            {
+                word: 'cook',
+                translation: 'повар',
+                image: 'img/cook.jpg',
+                audioSrc: 'audio/cook.mp3'
+            }, 
+            {
+                word: 'doctor',
+                translation: 'врач',
+                image: 'img/doctor.jpg',
+                audioSrc: 'audio/doctor.mp3'
+            }, 
+            {
+                word: 'lawyer',
+                translation: 'адвокат',
+                image: 'img/lawyer.jpg',
+                audioSrc: 'audio/lawyer.mp3'
+            }, 
+            {
+                word: 'taxi driver',
+                translation: 'водитель такси',
+                image: 'img/taxi driver.jpg',
+                audioSrc: 'audio/taxi driver.mp3'
+            }, 
+            {
+                word: 'teacher',
+                translation: 'учитель',
+                image: 'img/teacher.jpg',
+                audioSrc: 'audio/teacher.mp3'
+            }, 
+            {
+                word: 'vet',
+                translation: 'ветеринар',
+                image: 'img/vet.jpg',
+                audioSrc: 'audio/vet.mp3'
+            }, 
+            {
+                word: 'waiter',
+                translation: 'официант',
+                image: 'img/waiter.jpg',
+                audioSrc: 'audio/waiter.mp3'
+            }, 
+        ],
+        [
+            {
+                word: 'apple',
+                translation: 'яблоко',
+                image: 'img/apple.jpg',
+                audioSrc: 'audio/apple.mp3'
+            },  
+            {
+                word: 'banana',
+                translation: 'банан',
+                image: 'img/banana.jpg',
+                audioSrc: 'audio/banana.mp3'
+            },  
+            {
+                word: 'grape',
+                translation: 'виноград',
+                image: 'img/grape.jpg',
+                audioSrc: 'audio/grape.mp3'
+            },  
+            {
+                word: 'kiwi',
+                translation: 'киви',
+                image: 'img/kiwi.jpg',
+                audioSrc: 'audio/kiwi.mp3'
+            },  
+            {
+                word: 'peach',
+                translation: 'персик',
+                image: 'img/peach.jpg',
+                audioSrc: 'audio/peach.mp3'
+            },  
+            {
+                word: 'pear',
+                translation: 'груша',
+                image: 'img/pear.jpg',
+                audioSrc: 'audio/pear.mp3'
+            },  
+            {
+                word: 'pineapple',
+                translation: 'ананас',
+                image: 'img/pineapple.jpg',
+                audioSrc: 'audio/pineapple.mp3'
+            },  
+            {
+                word: 'plum',
+                translation: 'слива',
+                image: 'img/plum.jpg',
+                audioSrc: 'audio/plum.mp3'
+            },  
         ]
     ]
 ]
