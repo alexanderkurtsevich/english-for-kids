@@ -11,3 +11,5 @@ categoriesContainer.addEventListener('click', (event) => {
         localStorage.lastClick = event.target.id
     } 
 })
+
+localStorage.lastClick = 'Main Page'

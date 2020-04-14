@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _categorie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categorie.js */ \"./src/categorie.js\");\n\r\n\r\nconst categoriesContainer = document.createElement('div');\r\ncategoriesContainer.classList.add('english__categories-container');\r\ndocument.body.append(categoriesContainer);\r\n\r\ncategoriesContainer.append(Object(_categorie_js__WEBPACK_IMPORTED_MODULE_0__[\"createCategorie\"])());\r\n\r\ncategoriesContainer.addEventListener('click', (event) => {\r\n    if (event.target.classList.contains('categorie__link')) {\r\n        localStorage.lastClick = event.target.id\r\n    } \r\n})\r\n\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _categorie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categorie.js */ \"./src/categorie.js\");\n\r\n\r\nconst categoriesContainer = document.createElement('div');\r\ncategoriesContainer.classList.add('english__categories-container');\r\ndocument.body.append(categoriesContainer);\r\n\r\ncategoriesContainer.append(Object(_categorie_js__WEBPACK_IMPORTED_MODULE_0__[\"createCategorie\"])());\r\n\r\ncategoriesContainer.addEventListener('click', (event) => {\r\n    if (event.target.classList.contains('categorie__link')) {\r\n        localStorage.lastClick = event.target.id\r\n    } \r\n})\r\n\r\nlocalStorage.lastClick = 'Main Page'\r\n\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ })
 

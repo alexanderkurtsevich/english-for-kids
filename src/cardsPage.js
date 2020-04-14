@@ -2,6 +2,7 @@ import { cards } from './cards.js'
 import { Card } from './createCards.js'
 import { createTrainPlayToggle } from './trainPlayToggle.js';
 import { StartButton } from './StartButton.js';
+import { BurgerMenu } from './burgerMenu.js'
 
 class English {
     constructor() {
@@ -31,10 +32,14 @@ class English {
         header.classList.add('header');
         document.body.append(header);
 
+        this.burgerMenu = new BurgerMenu(cards[0]);
+        this.burgerIcon = this.burgerMenu.createBurgerIcon();
+        header.append(this.burgerIcon);
+        this.burgerWindow = this.burgerMenu.createBurgerWindow();
+        document.body.append(this.burgerWindow)
+
+
         this.createStarsWrap()
-
-
-
 
         this.startButtonInstance = new StartButton();
         this.startButton = this.startButtonInstance.create();
@@ -74,6 +79,9 @@ class English {
                 let stars = document.querySelectorAll('.star');
                 stars.forEach(star => star.remove())
             }
+
+            this.startButtonInstance.toStartGameButton()
+            this.game = false
         })
 
 

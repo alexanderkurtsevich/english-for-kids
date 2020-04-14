@@ -29,4 +29,10 @@ export class StartButton {
         this.buttonText.classList.add('hidden');
         this.buttonImage.classList.remove('hidden')
     }
+
+    toStartGameButton() {
+        this.button.classList.remove('start-button-repeat');
+        this.buttonText.classList.remove('hidden');
+        this.buttonImage.classList.add('hidden')
+    }
 }
