@@ -21,7 +21,7 @@ export function createTrainPlayToggle() {
         toggleTextTrain.classList.toggle('active');
         toggleTextPlay.classList.toggle('active');
         
-        toggleButton.style.left = (toggleButton.style.left === "") ? '73px' : ""
+        toggleButton.style.left = (toggleButton.style.left === "") ? '74px' : ""
     })
 
     return toggle

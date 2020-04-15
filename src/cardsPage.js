@@ -34,7 +34,7 @@ class English {
 
         this.burgerMenu = new BurgerMenu(cards[0]);
         this.burgerIcon = this.burgerMenu.createBurgerIcon();
-        header.append(this.burgerIcon);
+        document.body.append(this.burgerIcon);
         this.burgerWindow = this.burgerMenu.createBurgerWindow();
         document.body.append(this.burgerWindow)
 
