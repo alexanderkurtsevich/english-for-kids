@@ -13,6 +13,7 @@ export class StartButton {
         this.buttonText = document.createElement('p');
         this.buttonText.classList.add('start-button__text');
         this.buttonText.innerHTML = 'Start game';
+        this.buttonText.setAttribute('data-button', 'start');
         this.button.append(this.buttonText)
 
         this.buttonImage = document.createElement('img');
