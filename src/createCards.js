@@ -1,4 +1,4 @@
-import {cards} from './cards.js';
+import { cards } from './cards.js';
 
 export class Card {
     constructor(word, translation, imageSrc, audioSrc) {
@@ -18,7 +18,7 @@ export class Card {
         card.classList.add('cards__card', 'card');
         card.setAttribute('data-word', this.word);
         card.style.backgroundImage = `url("${this.imageSrc}")`
-        
+
         this.cardText = document.createElement('p');
         this.cardText.classList.add('card__word');
         this.cardText.innerHTML = this.word;

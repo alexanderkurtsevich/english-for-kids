@@ -175,6 +175,8 @@ class English {
             let word = event.target.getAttribute('data-word');
             let audio = new Audio(this.audios[word]);
             audio.play()
+
+            this.changeStats(word, 'trainClicks')
         }
     }
 
@@ -212,6 +214,10 @@ class English {
                 setTimeout(() => {
                     this.playSound(this.audios[this.randomizedWordList[this.count]])
                 }, 700);
+
+
+                let word = event.target.getAttribute('data-word');
+                this.changeStats(word, 'correct')
             }
             else {
                 this.errorCount += 1;
@@ -222,8 +228,18 @@ class English {
                 this.starsWrap.append(star)
 
                 this.playSound('audio/error.mp3')
+
+                let word = event.target.getAttribute('data-word');
+                this.changeStats(word, 'errors');
             }
         }
+    }
+
+    changeStats(word, element) {
+        let stats = JSON.parse(localStorage.stats);
+        stats[word][`${element}`] += 1;
+        localStorage.stats = JSON.stringify(stats)
+
     }
 
     playSound(src) {
@@ -268,8 +284,9 @@ class English {
                 window.location.href = "./index.html"
             }, 3500);
         }
-
     }
+
+
 }
 
 let english = new English();

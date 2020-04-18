@@ -49,6 +49,14 @@ export class BurgerMenu {
             this.burgerWindow.append(pageLink);
         });
 
+        let stats = document.createElement('a');
+        stats.classList.add('burger-menu__link');
+        stats.setAttribute('href', './stats.html');
+        stats.setAttribute('data-link', 'Statistics');
+        stats.innerHTML = 'Statistics';
+        this.links.push(stats);
+        this.burgerWindow.append(stats);
+
         this.links.forEach(element => {
             if (element.matches(`[data-link = "${localStorage.lastClick}"]`)) {
                 element.classList.add('burger-menu__link-active');
