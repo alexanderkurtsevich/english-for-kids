@@ -20,6 +20,11 @@ header.append(burgerIcon);
 let burgerWindow = burgerMenu.createBurgerWindow();
 document.body.append(burgerWindow);
 
+let logo = document.createElement('p');
+logo.classList.add('logo');
+logo.innerHTML = "English For Kids";
+header.append(logo)
+
 let toggle = createTrainPlayToggle(); // Для тоггла
 header.append(toggle);
 
