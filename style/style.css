@@ -1,9 +1,5 @@
-@font-face {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: cursive, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
     position: relative;
     height: 100%;
@@ -13,8 +9,8 @@ body {
 }
 
 .body-playmode {
-    background: rgb(34,193,195);
-background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: rgb(34, 193, 195);
+    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
 }
 
 
@@ -22,7 +18,7 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .categorie {
@@ -31,6 +27,11 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
     text-align: center;
     position: relative;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .4);
+    transition: .3s;
+}
+
+.categorie:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .6);
 }
 
 .categorie__image {
@@ -49,9 +50,33 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
     background-color: white;
     margin: 0;
     padding: 16px 0;
-    font-size: 23px;
+    font-size: 27px;
 }
 
 .logo {
-    font-size: 34px;
+    font-size: 40px;
+}
+
+@media screen and (max-width: 1330px) {
+    .english__categories-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .english__categories-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .english__categories-container {
+        grid-template-columns: 1fr;
+    }
+    .logo {
+        font-size: 25px;
+        width: 109px;
+    }
+    
+
 }

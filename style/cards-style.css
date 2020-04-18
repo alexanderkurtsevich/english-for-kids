@@ -2,12 +2,8 @@ html {
     height: 100%;
 }
 
-@font-face {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: cursive, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
     position: relative;
     height: 100%;
@@ -17,14 +13,14 @@ body {
 }
 
 .body-playmode {
-    background: rgb(34,193,195);
-background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: rgb(34, 193, 195);
+    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
 }
 
 .cards__container {
     width: auto;
     display: grid;
-    grid-template-columns: minmax(auto, 275px) minmax(auto, 275px) minmax(auto, 275px) minmax(auto, 275px);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 30px;
     padding: 15px 20px;
     justify-content: center;
@@ -44,6 +40,11 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .4);
     border-radius: 3%;
     cursor: pointer;
+    justify-self: center;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .6);
 }
 
 .card-rotate {
@@ -100,7 +101,7 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
 }
 
 .card-playmode {
-    bottom: -43px;
+    bottom: -50px;
 }
 
 /* WIN WINDOW */
@@ -167,7 +168,7 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
 }
 
 .start-button__text {
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .start-button-image {
@@ -201,19 +202,52 @@ background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100
     opacity: .5;
 }
 
-
-/* BURGER MENU */
-
-
-
-
-
-
-
 .hidden {
     display: none;
 }
 
 .active {
     display: block;
+}
+
+@media screen and (max-width: 1330px) {
+    .cards__container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .cards__container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        justify-content: flex-end;
+    }
+
+    .cards__container {
+        grid-template-columns: 1fr;
+    }
+
+    .start-button {
+        text-align: center;
+        width: 100px;
+        height: 67px;
+        margin-right: 10px;
+    }
+    .start-button-repeat {
+        width: 67px;
+        height: 67px;
+    }
+
+    .start-button__text {
+        font-size: 20px;
+    }
+
+    .star {
+        width: 40px;
+        height: 40px;
+    }
 }

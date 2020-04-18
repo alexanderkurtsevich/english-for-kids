@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     width: 120px;
+    min-width: 120px;
     height: 47px;
     background-color: #40a5f2;
     border-radius: 5px;
@@ -11,6 +12,11 @@
     box-sizing: border-box;
     border-radius: 50px;
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .4);
+    transition: .3s;
+}
+
+.toggle:hover {
+    box-shadow: 0 5px 5px rgba(0,0,0,.6);
 }
 
 .toggle-active {
@@ -35,7 +41,7 @@
 }
 
 .toggle__text {
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 11px;
     position: absolute;
     display: none;
