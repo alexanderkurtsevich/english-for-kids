@@ -2,12 +2,12 @@ import { cards } from './cards.js'
 import { Card } from './createCards.js'
 import { createTrainPlayToggle } from './trainPlayToggle.js';
 import { StartButton } from './StartButton.js';
-import { BurgerMenu } from './burgerMenu.js'
+import { BurgerMenu } from './burgerMenu.js';
+import { createHeader } from './header.js';
 
 class English {
     constructor() {
         this.cardsClassesObj = {};
-        this.mode = 'train';
 
         this.wordsList = [];
         this.randomizedWordList = []
@@ -27,16 +27,16 @@ class English {
         this.startGameEvent = this.startGameEvent.bind(this);
         this.rotateCardClickEvent = this.rotateCardClickEvent.bind(this)
         this.rotateCardMouseOverEvent = this.rotateCardMouseOverEvent.bind(this)
+        this.toggleEvent = this.toggleEvent.bind(this);
 
-        let header = document.createElement('header'); // создание хэдера
-        header.classList.add('header');
+        let header = createHeader();
         document.body.append(header);
 
         this.burgerMenu = new BurgerMenu(cards[0]);
         this.burgerIcon = this.burgerMenu.createBurgerIcon();
-        document.body.append(this.burgerIcon);
+        header.append(this.burgerIcon);
         this.burgerWindow = this.burgerMenu.createBurgerWindow();
-        document.body.append(this.burgerWindow)
+        document.body.append(this.burgerWindow);
 
 
         this.createStarsWrap()
@@ -52,44 +52,74 @@ class English {
         this.createCards()
         this.randomizeWords()
 
-        console.log(this.wordsList);
-        console.log(this.randomizedWordList)
-
-        this.toggle.addEventListener('click', (event) => {
-            this.mode = (this.mode === 'train') ? 'play' : 'train';
-            this.englishWords.forEach(eachWord => {
-                eachWord.classList.toggle('card-playmode');
-            })
-            this.flipImages.forEach(eachImg => {
-                eachImg.classList.toggle('card-playmode')
-            })
-            this.translations.forEach(eachTranslation => {
-                eachTranslation.classList.toggle('card-playmode')
-            })
-            this.startButton.classList.toggle('hidden')
-
-            if (this.mode === 'play') {
-                this.cardsContainer.removeEventListener('click', this.playAudioEvent);
-                document.body.addEventListener('click', this.startGameEvent);
-            }
-            else {
-                this.cardsContainer.addEventListener('click', this.playAudioEvent);
-                document.body.removeEventListener('click', this.startGameEvent);
-
-                let stars = document.querySelectorAll('.star');
-                stars.forEach(star => star.remove())
-            }
-
-            this.startButtonInstance.toStartGameButton()
-            this.game = false
-        })
-
+        if (localStorage.mode === 'play') {
+            this.toPlayMode()
+        }
 
         this.cardsContainer.addEventListener('click', this.playAudioEvent)
         this.cardsContainer.addEventListener('click', this.rotateCardClickEvent)
         this.cardsContainer.addEventListener('mouseover', this.rotateCardMouseOverEvent)
+        this.toggle.addEventListener('click', this.toggleEvent);
 
+    }
 
+    toggleEvent(event) {
+        if (localStorage.mode === 'train') {
+            this.toPlayMode();
+        }
+        else {
+            this.toTrainMode();
+        }
+
+        this.startButtonInstance.toStartGameButton()
+        this.game = false
+    }
+
+    toPlayMode() {
+        this.englishWords.forEach(eachWord => {
+            eachWord.classList.add('card-playmode');
+        })
+        this.flipImages.forEach(eachImg => {
+            eachImg.classList.add('card-playmode')
+        })
+        this.translations.forEach(eachTranslation => {
+            eachTranslation.classList.add('card-playmode')
+        })
+        this.startButton.classList.remove('start-button-hidden');
+
+        document.body.classList.add('body-playmode')
+
+        this.cardsContainer.removeEventListener('click', this.playAudioEvent);
+        document.body.addEventListener('click', this.startGameEvent);
+    }
+
+    toTrainMode() {
+        this.englishWords.forEach(eachWord => {
+            eachWord.classList.remove('card-playmode');
+        })
+        this.flipImages.forEach(eachImg => {
+            eachImg.classList.remove('card-playmode')
+        })
+        this.translations.forEach(eachTranslation => {
+            eachTranslation.classList.remove('card-playmode')
+        })
+        this.startButton.classList.add('start-button-hidden');
+
+        document.body.classList.remove('body-playmode');
+
+        this.cardsContainer.addEventListener('click', this.playAudioEvent);
+        document.body.removeEventListener('click', this.startGameEvent);
+
+        let stars = document.querySelectorAll('.star');
+        stars.forEach(star => star.remove())
+
+        let blockWindows = document.querySelectorAll('.block-window');
+        blockWindows.forEach(blockWindow => blockWindow.remove());
+
+        this.count = 0;
+        this.errorCount = 0;
+
+        this.randomizeWords()
     }
 
     rotateCardClickEvent(event) {
@@ -141,7 +171,7 @@ class English {
     }
 
     playAudioEvent(event) {
-        if (this.mode === 'train' && event.target.hasAttribute('data-word') && !event.target.classList.contains('card__flip')) {
+        if (localStorage.mode === 'train' && event.target.hasAttribute('data-word') && !event.target.classList.contains('card__flip')) {
             let word = event.target.getAttribute('data-word');
             let audio = new Audio(this.audios[word]);
             audio.play()

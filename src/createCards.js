@@ -42,14 +42,3 @@ export class Card {
         return this.card;
     }
 }
-
-
-
-
-
-// {/* <div class="cards__container">
-// <div class="cards__card card">
-//     <img src="" alt="" class="card__image">
-//     <p class="card__text"></p>
-//     <img src="" alt="" class="card__flip">
-// </div> */}

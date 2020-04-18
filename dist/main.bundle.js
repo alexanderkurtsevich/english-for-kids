@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/burgerMenu.js":
+/*!***************************!*\
+  !*** ./src/burgerMenu.js ***!
+  \***************************/
+/*! exports provided: BurgerMenu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"BurgerMenu\", function() { return BurgerMenu; });\nclass BurgerMenu {\r\n    constructor(categoriesArray) {\r\n\r\n        this.categories = categoriesArray;\r\n        this.burgerIcon = null;\r\n        this.links = [];\r\n    }\r\n\r\n    createBurgerIcon() {\r\n        this.burgerIcon = document.createElement('div');\r\n        this.burgerIcon.classList.add('burger-menu__icon', 'burger-icon');\r\n\r\n        let line = document.createElement('div');\r\n        line.classList.add('burger-icon__line');\r\n        this.burgerIcon.append(line);\r\n\r\n        let cloneLine1 = line.cloneNode();\r\n        this.burgerIcon.append(cloneLine1);\r\n        let cloneLine2 = line.cloneNode();\r\n        this.burgerIcon.append(cloneLine2);\r\n\r\n        this.burgerIcon.addEventListener('click', (event) => {\r\n            event.currentTarget.classList.toggle('burger-icon-rotate');\r\n            this.burgerWindow.classList.toggle('burger-menu__window-active')\r\n        })\r\n\r\n        return this.burgerIcon\r\n    }\r\n\r\n    createBurgerWindow() {\r\n        this.burgerWindow = document.createElement('div');\r\n        this.burgerWindow.classList.add('burger-menu__window');\r\n\r\n        let mainPageLink = document.createElement('a');\r\n        mainPageLink.classList.add('burger-menu__link');\r\n        mainPageLink.setAttribute('href', './index.html');\r\n        mainPageLink.setAttribute('data-link', 'Main Page');\r\n        mainPageLink.innerHTML = 'Main Page';\r\n        this.links.push(mainPageLink);\r\n        this.burgerWindow.append(mainPageLink);\r\n\r\n        this.categories.forEach(element => {\r\n            let pageLink = document.createElement('a');\r\n            pageLink.classList.add('burger-menu__link');\r\n            pageLink.setAttribute('href', './cards.html');\r\n            pageLink.setAttribute('data-link', element)\r\n            pageLink.innerHTML = element;\r\n            this.links.push(pageLink)\r\n            this.burgerWindow.append(pageLink);\r\n        });\r\n\r\n        this.links.forEach(element => {\r\n            if (element.matches(`[data-link = \"${localStorage.lastClick}\"]`)) {\r\n                element.classList.add('burger-menu__link-active');\r\n            }\r\n        })\r\n\r\n        this.burgerWindow.addEventListener('click', (event) => {\r\n            if (event.target.classList.contains('burger-menu__link')) {\r\n                localStorage.lastClick = event.target.getAttribute('data-link')\r\n            }\r\n        })\r\n\r\n        return this.burgerWindow;\r\n    }\r\n}\n\n//# sourceURL=webpack:///./src/burgerMenu.js?");
+
+/***/ }),
+
 /***/ "./src/cards.js":
 /*!**********************!*\
   !*** ./src/cards.js ***!
@@ -110,6 +122,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/header.js":
+/*!***********************!*\
+  !*** ./src/header.js ***!
+  \***********************/
+/*! exports provided: createHeader */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createHeader\", function() { return createHeader; });\nfunction createHeader() {\r\n    let header = document.createElement('header');\r\n    header.classList.add('header');\r\n    return header;\r\n}\n\n//# sourceURL=webpack:///./src/header.js?");
+
+/***/ }),
+
 /***/ "./src/main.js":
 /*!*********************!*\
   !*** ./src/main.js ***!
@@ -118,7 +142,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _categorie_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./categorie.js */ \"./src/categorie.js\");\n\r\n\r\nconst categoriesContainer = document.createElement('div');\r\ncategoriesContainer.classList.add('english__categories-container');\r\ndocument.body.append(categoriesContainer);\r\n\r\ncategoriesContainer.append(Object(_categorie_js__WEBPACK_IMPORTED_MODULE_0__[\"createCategorie\"])());\r\n\r\ncategoriesContainer.addEventListener('click', (event) => {\r\n    if (event.target.classList.contains('categorie__link')) {\r\n        localStorage.lastClick = event.target.id\r\n    } \r\n})\r\n\r\nlocalStorage.lastClick = 'Main Page'\r\n\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _cards_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cards.js */ \"./src/cards.js\");\n/* harmony import */ var _categorie_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categorie.js */ \"./src/categorie.js\");\n/* harmony import */ var _trainPlayToggle_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./trainPlayToggle.js */ \"./src/trainPlayToggle.js\");\n/* harmony import */ var _burgerMenu_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./burgerMenu.js */ \"./src/burgerMenu.js\");\n/* harmony import */ var _header_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header.js */ \"./src/header.js\");\n\r\n\r\n\r\n\r\n\r\n\r\nif (localStorage.mode === undefined || localStorage.mode === 'train') {\r\n    localStorage.mode = 'train';\r\n}\r\nelse {\r\n    document.body.classList.add('body-playmode')\r\n}\r\n\r\nlet header = Object(_header_js__WEBPACK_IMPORTED_MODULE_4__[\"createHeader\"])();\r\ndocument.body.append(header);\r\n\r\nlet burgerMenu = new _burgerMenu_js__WEBPACK_IMPORTED_MODULE_3__[\"BurgerMenu\"](_cards_js__WEBPACK_IMPORTED_MODULE_0__[\"cards\"][0]);\r\nlet burgerIcon = burgerMenu.createBurgerIcon();\r\nheader.append(burgerIcon);\r\nlet burgerWindow = burgerMenu.createBurgerWindow();\r\ndocument.body.append(burgerWindow);\r\n\r\nlet toggle = Object(_trainPlayToggle_js__WEBPACK_IMPORTED_MODULE_2__[\"createTrainPlayToggle\"])(); // Для тоггла\r\nheader.append(toggle);\r\n\r\ntoggle.addEventListener('click', (event) => {\r\n    document.body.classList.toggle('body-playmode')\r\n})\r\n\r\nconst categoriesContainer = document.createElement('div');\r\ncategoriesContainer.classList.add('english__categories-container');\r\ndocument.body.append(categoriesContainer);\r\n\r\ncategoriesContainer.append(Object(_categorie_js__WEBPACK_IMPORTED_MODULE_1__[\"createCategorie\"])());\r\n\r\ncategoriesContainer.addEventListener('click', (event) => {\r\n    if (event.target.classList.contains('categorie__link')) {\r\n        localStorage.lastClick = event.target.id\r\n    }\r\n})\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/main.js?");
+
+/***/ }),
+
+/***/ "./src/trainPlayToggle.js":
+/*!********************************!*\
+  !*** ./src/trainPlayToggle.js ***!
+  \********************************/
+/*! exports provided: createTrainPlayToggle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createTrainPlayToggle\", function() { return createTrainPlayToggle; });\nfunction createTrainPlayToggle() {\r\n    let toggle = document.createElement('div');\r\n    toggle.classList.add('toggle');\r\n\r\n    let toggleButton = document.createElement('div');\r\n    toggleButton.classList.add('toggle__button');\r\n    toggle.append(toggleButton);\r\n\r\n    let toggleTextPlay = document.createElement('p');\r\n    toggleTextPlay.classList.add('toggle__text', 'toggle__text-play');\r\n    toggleTextPlay.innerHTML = \"PLAY\";\r\n    toggle.append(toggleTextPlay);\r\n\r\n    let toggleTextTrain = document.createElement('p');\r\n    toggleTextTrain.classList.add('toggle__text', 'toggle__text-train', 'active');\r\n    toggleTextTrain.innerHTML = \"TRAIN\";\r\n    toggle.append(toggleTextTrain);\r\n\r\n    if (localStorage.mode === 'play') {\r\n        toggle.classList.add('toggle-active');\r\n        toggleTextTrain.classList.remove('active');\r\n        toggleTextPlay.classList.add('active');\r\n        \r\n        toggleButton.style.left = '74px';\r\n    }\r\n\r\n    toggle.addEventListener('click', (event) => {\r\n        setTimeout(() => {\r\n            localStorage.mode = localStorage.mode === 'train' ? 'play' : 'train';\r\n        }, 0);\r\n        \r\n        toggle.classList.toggle('toggle-active');\r\n        toggleTextTrain.classList.toggle('active');\r\n        toggleTextPlay.classList.toggle('active');\r\n        \r\n        toggleButton.style.left = (toggleButton.style.left === \"\") ? '74px' : \"\"\r\n    })\r\n\r\n    return toggle\r\n}\n\n//# sourceURL=webpack:///./src/trainPlayToggle.js?");
 
 /***/ })
 

@@ -1,16 +1,36 @@
+@font-face {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+    margin: 0;
+    background: rgb(64, 164, 242);
+    background: linear-gradient(90deg, rgba(64, 164, 242, 1) 0%, rgba(56, 206, 233, 1) 25%, rgba(0, 255, 195, 1) 100%);
+}
+
+.body-playmode {
+    background: rgb(34,193,195);
+background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+}
+
+
 .english__categories-container {
-    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
+    padding: 0 20px;
 }
 
 .categorie {
-    border: 3px solid black;
     width: auto;
     height: auto;
     text-align: center;
     position: relative;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .4);
 }
 
 .categorie__image {
@@ -23,4 +43,11 @@
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.categorie__text {
+    background-color: white;
+    margin: 0;
+    padding: 16px 0;
+    font-size: 23px;
 }

@@ -16,7 +16,19 @@ export function createTrainPlayToggle() {
     toggleTextTrain.innerHTML = "TRAIN";
     toggle.append(toggleTextTrain);
 
+    if (localStorage.mode === 'play') {
+        toggle.classList.add('toggle-active');
+        toggleTextTrain.classList.remove('active');
+        toggleTextPlay.classList.add('active');
+        
+        toggleButton.style.left = '74px';
+    }
+
     toggle.addEventListener('click', (event) => {
+        setTimeout(() => {
+            localStorage.mode = localStorage.mode === 'train' ? 'play' : 'train';
+        }, 0);
+        
         toggle.classList.toggle('toggle-active');
         toggleTextTrain.classList.toggle('active');
         toggleTextPlay.classList.toggle('active');

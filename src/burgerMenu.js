@@ -6,9 +6,6 @@ export class BurgerMenu {
         this.links = [];
     }
 
-
-
-
     createBurgerIcon() {
         this.burgerIcon = document.createElement('div');
         this.burgerIcon.classList.add('burger-menu__icon', 'burger-icon');

@@ -7,7 +7,7 @@ export class StartButton {
 
     create() {
         this.button = document.createElement('div');
-        this.button.classList.add('start-button', 'hidden');
+        this.button.classList.add('start-button', 'start-button-hidden');
         this.button.setAttribute('data-button', 'start');
 
         this.buttonText = document.createElement('p');
