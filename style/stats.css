@@ -75,6 +75,7 @@ td {
 .table-wrap {
     max-width: 800px;
     overflow-x: scroll;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 767px) {

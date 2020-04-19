@@ -1,14 +1,4 @@
-import { English } from './app.js';
+import English from './app';
 
-let english = new English();
-english.init()
-
-
-
-
-
-
-
-
-
-
+const english = new English();
+english.init();

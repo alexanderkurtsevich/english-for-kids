@@ -1,84 +1,85 @@
-export class BurgerMenu {
-    constructor(categoriesArray) {
+import '../style/burger-menu.css';
 
-        this.categories = categoriesArray;
+export default class BurgerMenu {
+  constructor(categoriesArray) {
+    this.categories = categoriesArray;
 
-        this.burgerIcon = null;
-        this.burgerWindow = null;
-        
-        this.links = [];
-    }
+    this.burgerIcon = null;
+    this.burgerWindow = null;
 
-    createBurgerIcon() {
-        this.burgerIcon = document.createElement('div');
-        this.burgerIcon.classList.add('burger-menu__icon', 'burger-icon', 'burger-menu-element');
+    this.links = [];
+  }
 
-        let line = document.createElement('div');
-        line.classList.add('burger-icon__line', 'burger-menu-element');
-        this.burgerIcon.append(line);
+  createBurgerIcon() {
+    this.burgerIcon = document.createElement('div');
+    this.burgerIcon.classList.add('burger-menu__icon', 'burger-icon', 'burger-menu-element');
 
-        let cloneLine1 = line.cloneNode();
-        this.burgerIcon.append(cloneLine1);
-        let cloneLine2 = line.cloneNode();
-        this.burgerIcon.append(cloneLine2);
+    const line = document.createElement('div');
+    line.classList.add('burger-icon__line', 'burger-menu-element');
+    this.burgerIcon.append(line);
 
-        this.burgerIcon.addEventListener('click', (event) => {
-            event.currentTarget.classList.toggle('burger-icon-rotate');
-            this.burgerWindow.classList.toggle('burger-menu__window-active')
-        })
+    const cloneLine1 = line.cloneNode();
+    this.burgerIcon.append(cloneLine1);
+    const cloneLine2 = line.cloneNode();
+    this.burgerIcon.append(cloneLine2);
 
-        return this.burgerIcon
-    }
+    this.burgerIcon.addEventListener('click', (event) => {
+      event.currentTarget.classList.toggle('burger-icon-rotate');
+      this.burgerWindow.classList.toggle('burger-menu__window-active');
+    });
 
-    createBurgerWindow() {
-        this.burgerWindow = document.createElement('div');
-        this.burgerWindow.classList.add('burger-menu__window', 'burger-menu-element');
+    return this.burgerIcon;
+  }
 
-        let mainPageLink = document.createElement('a');
-        mainPageLink.classList.add('burger-menu__link');
-        mainPageLink.setAttribute('href', './index.html');
-        mainPageLink.setAttribute('data-link', 'Main Page');
-        mainPageLink.innerHTML = 'Main Page';
-        this.links.push(mainPageLink);
-        this.burgerWindow.append(mainPageLink);
+  createBurgerWindow() {
+    this.burgerWindow = document.createElement('div');
+    this.burgerWindow.classList.add('burger-menu__window', 'burger-menu-element');
 
-        this.categories.forEach(element => {
-            let pageLink = document.createElement('a');
-            pageLink.classList.add('burger-menu__link', 'link-categorie');
-            pageLink.setAttribute('href', './cards.html');
-            pageLink.setAttribute('data-link', element)
-            pageLink.innerHTML = element;
-            this.links.push(pageLink)
-            this.burgerWindow.append(pageLink);
-        });
+    const mainPageLink = document.createElement('a');
+    mainPageLink.classList.add('burger-menu__link');
+    mainPageLink.setAttribute('href', './index.html');
+    mainPageLink.setAttribute('data-link', 'Main Page');
+    mainPageLink.innerHTML = 'Main Page';
+    this.links.push(mainPageLink);
+    this.burgerWindow.append(mainPageLink);
 
-        let stats = document.createElement('a');
-        stats.classList.add('burger-menu__link');
-        stats.setAttribute('href', './stats.html');
-        stats.setAttribute('data-link', 'Statistics');
-        stats.innerHTML = 'Statistics';
-        this.links.push(stats);
-        this.burgerWindow.append(stats);
+    this.categories.forEach((element) => {
+      const pageLink = document.createElement('a');
+      pageLink.classList.add('burger-menu__link', 'link-categorie');
+      pageLink.setAttribute('href', './cards.html');
+      pageLink.setAttribute('data-link', element);
+      pageLink.innerHTML = element;
+      this.links.push(pageLink);
+      this.burgerWindow.append(pageLink);
+    });
 
-        this.burgerWindow.addEventListener('click', (event) => {
-            if (event.target.classList.contains('link-categorie')) {
-                localStorage.lastClick = event.target.getAttribute('data-link')
-            }
-        })
-        
-        this.links.forEach(element => {
-            if (element.matches(`[data-link = "${localStorage.lastClick}"]`)) {
-                element.classList.add('burger-menu__link-active');
-            }
-        })
+    const stats = document.createElement('a');
+    stats.classList.add('burger-menu__link');
+    stats.setAttribute('href', './stats.html');
+    stats.setAttribute('data-link', 'Statistics');
+    stats.innerHTML = 'Statistics';
+    this.links.push(stats);
+    this.burgerWindow.append(stats);
 
-        document.body.addEventListener('click', (event) => {
-            if (!event.target.matches('.burger-menu-element')) {
-                this.burgerIcon.classList.remove('burger-icon-rotate');
-            this.burgerWindow.classList.remove('burger-menu__window-active')
-            }
-        })
+    this.burgerWindow.addEventListener('click', (event) => {
+      if (event.target.classList.contains('link-categorie')) {
+        localStorage.lastClick = event.target.getAttribute('data-link');
+      }
+    });
 
-        return this.burgerWindow;
-    }
+    this.links.forEach((element) => {
+      if (element.matches(`[data-link = "${localStorage.lastClick}"]`)) {
+        element.classList.add('burger-menu__link-active');
+      }
+    });
+
+    document.body.addEventListener('click', (event) => {
+      if (!event.target.matches('.burger-menu-element')) {
+        this.burgerIcon.classList.remove('burger-icon-rotate');
+        this.burgerWindow.classList.remove('burger-menu__window-active');
+      }
+    });
+
+    return this.burgerWindow;
+  }
 }
