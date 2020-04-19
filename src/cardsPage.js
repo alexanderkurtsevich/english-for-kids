@@ -176,7 +176,7 @@ class English {
             let audio = new Audio(this.audios[word]);
             audio.play()
 
-            this.changeStats(word, 'trainClicks')
+            this.changeStats(word, 'train-clicks')
         }
     }
 

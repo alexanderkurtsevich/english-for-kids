@@ -1,0 +1,34 @@
+body {
+    font-family: cursive, Helvetica, Arial, sans-serif;
+    background: rgb(64, 164, 242);
+    background: linear-gradient(90deg, rgba(64, 164, 242, 1) 0%, rgba(56, 206, 233, 1) 25%, rgba(0, 255, 195, 1) 100%);  
+}
+
+table {
+    border-spacing: 24px 15px;
+    margin: 0 auto;
+}
+
+th {
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+}
+
+td {
+    text-align: center;
+    font-size: 18px;
+}
+
+.sort-forward:after {
+    content: '▼';
+    position: absolute;
+    font-size: 16px;
+    top: 5px;
+}
+.sort-reverse:after {
+    content: '▲';
+    position: absolute;
+    font-size: 16px;
+    top: 5px;
+}
