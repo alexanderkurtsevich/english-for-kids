@@ -193,13 +193,12 @@ export default class English {
   }
 
   startGameEvent(event) {
+    if (event.target.getAttribute('data-button') === 'start' && this.game) {
+      this.playSound(this.audios[this.randomizedWordList[this.count]]);
+    }
     if (event.target.getAttribute('data-button') === 'start' && !this.game) {
       this.game = true;
       this.startButtonInstance.toRepeatButton();
-      this.playSound(this.audios[this.randomizedWordList[this.count]]);
-    }
-
-    if (event.target.getAttribute('data-button') === 'start' && this.game) {
       this.playSound(this.audios[this.randomizedWordList[this.count]]);
     }
 
