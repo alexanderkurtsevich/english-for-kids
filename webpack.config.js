@@ -6,6 +6,7 @@ module.exports = {
         main: './src/main.js',
         cardsPage: './src/cardsPage.js',
         stats: './src/stats.js',
+        statsTrain: './src/statsTrain.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -14,6 +15,5 @@ module.exports = {
 
     devServer: {
         port: 4200,
-
     }
 }

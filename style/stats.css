@@ -1,7 +1,7 @@
 body {
     font-family: cursive, Helvetica, Arial, sans-serif;
     background: rgb(64, 164, 242);
-    background: linear-gradient(90deg, rgba(64, 164, 242, 1) 0%, rgba(56, 206, 233, 1) 25%, rgba(0, 255, 195, 1) 100%);  
+    background: linear-gradient(90deg, rgba(64, 164, 242, 1) 0%, rgba(56, 206, 233, 1) 25%, rgba(0, 255, 195, 1) 100%);
 }
 
 table {
@@ -26,9 +26,75 @@ td {
     font-size: 16px;
     top: 5px;
 }
+
 .sort-reverse:after {
     content: '▲';
     position: absolute;
     font-size: 16px;
     top: 5px;
+}
+
+.repeat-words-button {
+    font-family: cursive, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 220px;
+    height: 45px;
+    border-radius: 50px;
+    box-sizing: border-box;
+    background-color: #40a5f2;
+    border: none;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .4);
+    font-size: 19px;
+    text-decoration: none;
+    color: black;
+
+}
+
+
+.reset-button {
+    font-family: cursive, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 130px;
+    height: 45px;
+    border-radius: 50px;
+    box-sizing: border-box;
+    background-color: #40a5f2;
+    border: none;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .4);
+    font-size: 26px;
+    text-decoration: none;
+
+}
+
+.table-wrap {
+    max-width: 800px;
+    overflow-x: scroll;
+}
+
+@media screen and (max-width: 767px) {
+    .reset-button {
+        width: 90px;
+    }
+
+    .repeat-words-button {
+        text-align: center;
+        width: 118px;
+        height: 82px;
+        margin-right: 8px;
+
+    }
+
+    .sort-forward:after {
+        top: 16px;
+    }
+
+    .sort-reverse:after {
+        top: 16px;
+    }
 }

@@ -3,6 +3,7 @@ import { createCategorie } from './categorie.js';
 import { createTrainPlayToggle } from './trainPlayToggle.js';
 import { BurgerMenu } from './burgerMenu.js';
 import { createHeader } from './header.js';
+import { createStats } from './createStats.js'
 
 if (localStorage.mode === undefined || localStorage.mode === 'train') {
     localStorage.mode = 'train';
@@ -44,36 +45,10 @@ categoriesContainer.addEventListener('click', (event) => {
     }
 })
 
-function toStats() {
-    if (localStorage.stats === undefined) {
-        localStorage.setItem('stats', '{}');
-        
-        cards[1].forEach((subArray, index) => {
+let links = document.querySelectorAll('.burger-menu__link');
+links.forEach(elem => elem.classList.remove('burger-menu__link-active'));
+links[0].classList.add('burger-menu__link-active');
 
-            subArray.forEach((card) => {
-                let obj = {
-                    'word': card.word,
-                    'translation': card.translation,
-                    'image': card.image,
-                    'audioSrc': card.audioSrc,
-                    'categorie': cards[0][index],
-                    'train-clicks': 0,
-                    'correct': 0,
-                    'errors': 0
-                }
-                let stats = JSON.parse(localStorage.stats);
-                stats[card.word] = obj;
-    
-                localStorage.setItem('stats', JSON.stringify(stats))
-            })
-    
-        })
-    }
+createStats()
 
-    
-
-
-}
-
-toStats()
 

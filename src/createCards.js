@@ -8,9 +8,9 @@ export class Card {
         this.audioSrc = audioSrc;
 
         this.card = null;
-        this.cardText;
-        this.cardTranslation;
-        this.cardFlip;
+        this.cardText = null;
+        this.cardTranslation = null;
+        this.cardFlip = null;
     }
 
     createCard() {

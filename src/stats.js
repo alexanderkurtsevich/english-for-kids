@@ -1,22 +1,57 @@
+import { cards } from './cards.js'
+import { BurgerMenu } from './burgerMenu.js';
+import { createHeader } from './header.js';
+import { createStats } from './createStats.js'
+
 class Stats {
     constructor() {
         this.tHeads = [];
         this.statsObj = {};
         this.statsArray = [];
+        this.difficultWords = [];
+        this.statsObj = JSON.parse(localStorage.stats);
+        this.sortEvent = this.sortEvent.bind(this);
 
         this.rows = []
     }
+
     createTable() {
-        this.statsObj = JSON.parse(localStorage.stats);
-        this.sortEvent = this.sortEvent.bind(this)
+        let header = createHeader();
+        document.body.append(header);
+
+        this.burgerMenu = new BurgerMenu(cards[0]);
+        this.burgerIcon = this.burgerMenu.createBurgerIcon();
+        header.append(this.burgerIcon);
+        this.burgerWindow = this.burgerMenu.createBurgerWindow();
+        document.body.append(this.burgerWindow);
+
 
         for (let key in this.statsObj) {
-            this.statsArray.push(this.statsObj[key])
+            let difficult = this.statsObj[key]['errors'] - this.statsObj[key]['correct'];
+            this.statsObj[key]['difficult'] = difficult;
+
+            if (difficult > 0) {
+                this.difficultWords.push(this.statsObj[key]);
+            }
+
+            this.statsArray.push(this.statsObj[key]);
         }
-        
+        this.difficultWords.sort((a, b) => b['difficult'] - a['difficult']);
+
+        localStorage.setItem('difficultWords', JSON.stringify(this.difficultWords.slice(0, 8)));
+
+
+
+        header.append(this.createRepeatWordsButton())
+        header.append(this.createResetButton())
+
+        let tableWrap = document.createElement('div');
+        tableWrap.classList.add('table-wrap');
+        document.body.append(tableWrap)
+
         this.table = document.createElement('table');
         this.table.classList.add('stats__table', 'table');
-        document.body.append(this.table);
+        tableWrap.append(this.table);
 
         let headRow = document.createElement('tr');
         headRow.classList.add('table__head-row');
@@ -35,14 +70,14 @@ class Stats {
         this.sortFunction('word');
         this.createWordsRows();
 
-        
-
-
         this.tHeads.forEach(tHead => {
             tHead.addEventListener('click', this.sortEvent)
         })
 
-        
+        let links = document.querySelectorAll('.burger-menu__link');
+        links.forEach(elem => elem.classList.remove('burger-menu__link-active'));
+        links[links.length - 1].classList.add('burger-menu__link-active')
+
     }
 
     createWordsRows() {
@@ -63,7 +98,7 @@ class Stats {
         })
     }
 
-    sortEvent(event){
+    sortEvent(event) {
         this.sortFunction(event.target.getAttribute('data-head'));
         if (event.target.matches('.sort-forward')) {
             event.target.classList.remove('sort-forward');
@@ -79,7 +114,7 @@ class Stats {
             this.tHeads.forEach(thead => thead.classList.remove('sort-forward', 'sort-reverse'));
             event.target.classList.add('sort-forward');
         }
-        
+
 
         this.rows.forEach(row => row.remove());
         this.createWordsRows();
@@ -89,8 +124,28 @@ class Stats {
         this.statsArray.sort((a, b) => a[parameter] > b[parameter] ? 1 : -1);
     }
 
+    createRepeatWordsButton() {
+        this.repeatWordsButton = document.createElement('a');
+        this.repeatWordsButton.classList.add('repeat-words-button');
+        this.repeatWordsButton.innerHTML = "Repeat difficult words"
+        this.repeatWordsButton.setAttribute('href', './statsTrain.html')
+        return this.repeatWordsButton;
+    }
 
+    createResetButton() {
+        this.resetButton = document.createElement('a');
+        this.resetButton.classList.add('reset-button');
+        this.resetButton.innerHTML = 'Reset';
+        this.resetButton.setAttribute('href', './stats.html')
 
+        this.resetButton.addEventListener('click', (event) => {
+            localStorage.removeItem('stats');
+            createStats()
+        })
+
+        return this.resetButton;
+
+    }
 }
 
 let stats = new Stats();
