@@ -54,7 +54,7 @@ export default class BurgerMenu {
     });
 
     const stats = document.createElement('a');
-    stats.classList.add('burger-menu__link');
+    stats.classList.add('burger-menu__link', 'burger-menu__stats');
     stats.setAttribute('href', './stats.html');
     stats.setAttribute('data-link', 'Statistics');
     stats.innerHTML = 'Statistics';

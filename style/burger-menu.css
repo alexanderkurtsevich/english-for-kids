@@ -62,6 +62,10 @@
     margin: 9px 0 9px 25px;
 }
 
+.burger-menu__stats {
+    background-color: mediumpurple;
+}
+
 .burger-menu__link:hover {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .6);
 }
